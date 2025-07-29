@@ -1,0 +1,73 @@
+@startuml particles_database
+skinparam {
+    Nodesep 160
+    Ranksep 50
+    Linetype ortho
+}
+
+skinparam entity {
+    BackgroundColor LightBlue
+    FontSize 14
+    ArrowThickness 1
+}
+
+entity "Particles" as particles {
+    +id: int [PK]
+    --
+    +name: text
+    +generation: enum ('first', 'second', 'third')
+    +type: enum ('quark', 'lepton')
+    +mass_GeV: float
+    +electric_charge: float
+    +spin: float 
+}
+
+entity "Bosons" as bosons {
+    +id: int [PK]
+    --
+    +name: text
+    +symbol: text
+    +spin: float
+    +mass_GeV: float
+    +stability: text
+    +force_id: int [FK] references forces(id)
+}
+
+entity "Forces" as forces {
+    +id: serial [PK]
+    --
+    +name: text
+    +description: text
+}
+
+entity "Boson_Particle" as boson_particle {
+    +particle_id: int [PK, FK]
+    +boson_id: int [PK, FK]
+}
+
+entity "Users" as users {
+    +id: serial [PK]
+    --
+    +username: text not null
+    +email: text not null
+    +password: text unique not null
+    +created_on: date
+}
+
+entity "Token" as tokens {
+    +id: serial [pk]
+    --
+    +token_hash: text unique
+    +issued_at: date
+    --
+    +user_id: int [FK] references user(id)
+}
+
+'relationships'
+
+boson_particle ---{ particles
+boson_particle --{ bosons
+bosons --- forces
+users --- tokens
+
+@enduml
