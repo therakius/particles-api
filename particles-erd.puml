@@ -33,7 +33,6 @@ entity "Bosons" as bosons {
     +id: int [PK]
     --
     +name: text
-    +type: enum ('quark', 'lepton')
     +symbol: text
     +spin: double precision
     +min_mass_GeV: double precision
