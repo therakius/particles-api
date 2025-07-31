@@ -1,7 +1,7 @@
 @startuml particles_database
 skinparam {
-    Nodesep 160
-    Ranksep 50
+    Nodesep 100
+    Ranksep 100
     Linetype ortho
 }
 
@@ -26,7 +26,6 @@ entity "Fermions" as fermions {
     +color_change: text
     +stability: text
     +life_time: double precision
-    +primary_decay_mode: text
 }
 
 entity "Bosons" as bosons {
@@ -42,8 +41,6 @@ entity "Bosons" as bosons {
     +stability: text
     +life_time: double precision
     +primary_decay_mode: text
-    --
-    +force_mediated: int [FK] references forces(id)
 }
 
 entity "Forces" as forces {
@@ -53,7 +50,27 @@ entity "Forces" as forces {
     +description: text
 }
 
-entity "Boson_Particle" as boson_particle {
+entity decay_modes {
+    +id: serial [pk]
+    --
+    +decay_width: double precision
+    +min_branching_ratio: double precision
+    +max_branching_ratio: double precision
+    +role_in_standard_model: text 
+}
+
+entity decay_modes_bosons {
+    +boson_id: int [PK, FK] references bosons(id)
+    +decay_mode_id: int [PK, FK] references decay_modes(id)
+}
+
+
+entity "Boson_Forces" as boson_forces {
+    +boson_id: int [PK,FK] references bosons(id)
+    +force_id: int [PK, FK] references forces(id)
+}
+
+entity "Boson_Fermion" as boson_fermion_interaction{
     +particle_id: int [PK, FK] references fermions(id)
     +boson_id: int [PK, FK] references bosons(id)
 }
@@ -73,14 +90,19 @@ entity "Token" as tokens {
     +token_hash: text unique
     +issued_at: date
     --
-    +user_id: int [FK] references user(id)
+    +user_id: int [FK] references users(id)
 }
 
 'relationships'
 
-fermions ---{ boson_particle 
-bosons --{ boson_particle 
-bosons --- forces
+fermions --{ boson_fermion_interaction
+bosons --{ boson_fermion_interaction
+bosons ---{ boson_forces
+forces --{ boson_forces
 users --- tokens
+decay_modes --{ decay_modes_bosons
+bosons --{ decay_modes_bosons
 
 @enduml
+
+
