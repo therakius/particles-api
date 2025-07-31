@@ -11,26 +11,40 @@ skinparam entity {
     ArrowThickness 1
 }
 
-entity "Particles" as particles {
+entity "Fermions" as fermions {
     +id: int [PK]
     --
     +name: text
-    +generation: enum ('first', 'second', 'third')
     +type: enum ('quark', 'lepton')
-    +mass_GeV: float
+    +symbol: text
+    +spin: float
+    +min_mass_GeV: float
+    +max_mass_GeV: float
     +electric_charge: float
-    +spin: float 
+    +generation: enum ('first', 'second', 'third')
+    +baryon_number: float
+    +color_change: text
+    +stability: text
+    +life_time: float
+    +primary_decay_mode: text
 }
 
 entity "Bosons" as bosons {
     +id: int [PK]
     --
     +name: text
+    +type: enum ('quark', 'lepton')
     +symbol: text
     +spin: float
-    +mass_GeV: float
+    +min_mass_GeV: float
+    +max_mass_GeV: float
+    +electric_charge: float
+    +color_change: text
     +stability: text
-    +force_id: int [FK] references forces(id)
+    +life_time: float
+    +primary_decay_mode: text
+    --
+    +force_mediated: int [FK] references forces(id)
 }
 
 entity "Forces" as forces {
@@ -41,8 +55,8 @@ entity "Forces" as forces {
 }
 
 entity "Boson_Particle" as boson_particle {
-    +particle_id: int [PK, FK]
-    +boson_id: int [PK, FK]
+    +particle_id: int [PK, FK] references fermions(id)
+    +boson_id: int [PK, FK] references bosons(id)
 }
 
 entity "Users" as users {
@@ -65,8 +79,8 @@ entity "Token" as tokens {
 
 'relationships'
 
-boson_particle ---{ particles
-boson_particle --{ bosons
+fermions ---{ boson_particle 
+bosons --{ boson_particle 
 bosons --- forces
 users --- tokens
 
