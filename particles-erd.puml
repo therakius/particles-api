@@ -20,7 +20,7 @@ entity "Fermions" as fermions {
     +spin: double precision
     +mass_display: Text
     +mass_value: double precision
-    +mass_uncertainity: double precision
+    +mass_uncertainty: double precision
     +electric_charge: double precision
     +generation: enum ('first', 'second', 'third')
     +baryon_number: double precision
@@ -40,7 +40,7 @@ entity "Bosons" as bosons {
     +spin: double precision
     +mass_display: Text
     +mass_value: double precision
-    +mass_uncertainity: double precision
+    +mass_uncertainty: double precision
     +electric_charge: double precision
     +color_change: text
     +stability: text
