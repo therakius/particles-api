@@ -18,14 +18,18 @@ entity "Fermions" as fermions {
     +type: enum ('quark', 'lepton')
     +symbol: text
     +spin: double precision
-    +min_mass_GeV: double precision
-    +max_mass_GeV: double precision
+    +mass_display: Text
+    +mass_value: double precision
+    +mass_uncertainity: double precision
     +electric_charge: double precision
     +generation: enum ('first', 'second', 'third')
     +baryon_number: double precision
     +color_change: text
     +stability: text
-    +life_time: double precision
+    +life_time_display: text
+    +life_time_value: double precision
+    +life_time_unit: enum('s', 'y')
+
 }
 
 entity "Bosons" as bosons {
@@ -34,12 +38,15 @@ entity "Bosons" as bosons {
     +name: text
     +symbol: text
     +spin: double precision
-    +min_mass_GeV: double precision
-    +max_mass_GeV: double precision
+    +mass_display: Text
+    +mass_value: double precision
+    +mass_uncertainity: double precision
     +electric_charge: double precision
     +color_change: text
     +stability: text
-    +life_time: double precision
+    +life_time_display: text
+    +life_time_value: double precision
+    +life_time_unit: enum('s', 'y')
     +primary_decay_mode: text
 }
 
