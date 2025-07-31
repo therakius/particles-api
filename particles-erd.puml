@@ -17,15 +17,15 @@ entity "Fermions" as fermions {
     +name: text
     +type: enum ('quark', 'lepton')
     +symbol: text
-    +spin: float
-    +min_mass_GeV: float
-    +max_mass_GeV: float
-    +electric_charge: float
+    +spin: double precision
+    +min_mass_GeV: double precision
+    +max_mass_GeV: double precision
+    +electric_charge: double precision
     +generation: enum ('first', 'second', 'third')
-    +baryon_number: float
+    +baryon_number: double precision
     +color_change: text
     +stability: text
-    +life_time: float
+    +life_time: double precision
     +primary_decay_mode: text
 }
 
@@ -35,13 +35,13 @@ entity "Bosons" as bosons {
     +name: text
     +type: enum ('quark', 'lepton')
     +symbol: text
-    +spin: float
-    +min_mass_GeV: float
-    +max_mass_GeV: float
-    +electric_charge: float
+    +spin: double precision
+    +min_mass_GeV: double precision
+    +max_mass_GeV: double precision
+    +electric_charge: double precision
     +color_change: text
     +stability: text
-    +life_time: float
+    +life_time: double precision
     +primary_decay_mode: text
     --
     +force_mediated: int [FK] references forces(id)
