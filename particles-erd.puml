@@ -78,7 +78,7 @@ entity "Boson_Forces" as boson_forces {
 }
 
 entity "Boson_Fermion" as boson_fermion_interaction{
-    +particle_id: int [PK, FK] references fermions(id)
+    +fermion_id int [PK, FK] references fermions(id)
     +boson_id: int [PK, FK] references bosons(id)
 }
 
