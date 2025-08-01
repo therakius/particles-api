@@ -26,9 +26,9 @@ entity "Fermions" as fermions {
     +baryon_number: double precision
     +color_change: text
     +stability: text
-    +life_time_display: text
-    +life_time_value: double precision
-    +life_time_unit: enum('s', 'y')
+    +lifetime_display: text
+    +lifetime_value: double precision
+    +lifetime_unit: enum('s', 'y')
 
 }
 
@@ -44,9 +44,9 @@ entity "Bosons" as bosons {
     +electric_charge: double precision
     +color_change: text
     +stability: text
-    +life_time_display: text
-    +life_time_value: double precision
-    +life_time_unit: enum('s', 'y')
+    +lifetime_display: text
+    +lifetime_value: double precision
+    +lifetime_unit: enum('s', 'y')
     +primary_decay_mode: text
 }
 
