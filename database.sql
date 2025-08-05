@@ -85,14 +85,18 @@ create table if NOT EXISTS tokens (
 );
 
 alter table fermions
-alter column spin set default 1/2;
+alter column spin set default 0.5;
 
 alter table fermions
-alter column baryon_number set default 1/3;
+alter column baryon_number set default ;
 
--- -- inserting data
--- -- fermions
--- insert into fermions (name, type, symbol, mass_display, mass_value, mass_uncertainty, electric_charge, generation, baryon_number, color_change, stability, lifetime_display, lifetime_value, lifetime_unit)
+alter table fermions 
+alter column baryon_number type double precisipn
+alter column electric_charge type double precision,
+alter column spin type double precision;
+
+-- inserting data
+-- fermions
+-- insert into fermions (name, type, symbol, mass_display, mass_value, mass_uncertainty, electric_charge, generation, color_change, stability, lifetime_display, lifetime_value, lifetime_unit)
 -- values 
--- ('Up','quark', 'u', '2.16 ± 0.07 MeV', 2.16, 0.7, 2/3, 'first', )
--- 
+-- ('Up','quark', 'u', '2.16 ± 0.07 MeV', 2.16, 0.7, 2/3, 'first', 'Yes (Red, Green, Blue)', 'Stable (in hadroms)', '> 5.27 x 10^41 (in proton)', 5.27e41, 's');
