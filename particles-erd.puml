@@ -111,5 +111,3 @@ decay_modes --{ decay_modes_bosons
 bosons --{ decay_modes_bosons
 
 @enduml
-
-

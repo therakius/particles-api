@@ -84,7 +84,5 @@ create table if NOT EXISTS tokens (
     user_id int references users(id)
 );
 
-
-
-
-
+alter table fermions
+alter column spin set default 1/2;
